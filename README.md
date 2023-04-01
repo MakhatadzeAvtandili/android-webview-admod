@@ -1,4 +1,4 @@
-<a href="https://dsc.gg/svcc/"><img width="120" height="120" align="left" style="float: left" src="https://cdn.discordapp.com/attachments/1002938193311715338/1076378042311639131/Android_logo_2.svg.png"></a>
+<a href="https://dsc.gg/svcc/"><img width="120" height="120" align="left" style="float: left" src="https://cdn.discordapp.com/attachments/1080838314644471902/1091598237313536080/Android_logo_2019.png"></a>
 # Build Custom Android Webview + Admob and Splashscreen.
 
 [![KoF](https://img.shields.io/discord/731725645851394118?color=5865F2&logo=discord&logoColor=white&style=for-the-badge)](https://dsc.gg/svcc/)
@@ -43,25 +43,18 @@ repositories {
 
 ## How to setup
 -  Open File ```Java -> neartool -> semuadapat -> config```
-<p align="center"><img src="https://cdn.discordapp.com/attachments/1002938193311715338/1076383202622586900/confnifg.JPG"></p>
 
 ## How to setup Onesignal
 -  Open File ```Grandle scripts -> build.grandle(Module.app)```
-<p align="center"><img src="https://cdn.discordapp.com/attachments/1002938193311715338/1076384517788540948/oneg.JPG"></p>
 
 ## How to setup my splashscreen
 -  Open File ```res -> layout -> splash_screen.xml```
-<p align="center"><img src="https://cdn.discordapp.com/attachments/1002938193311715338/1076385207848017940/layout.JPG"></p>
 
 ## How to setup my icon app
 -  Open File ```mipmap -> right click -> new -> image asset```
-<p align="center"><img src="https://cdn.discordapp.com/attachments/1002938193311715338/1076386126543196160/mipmap.png"></p>
 
 ## How to setup my admob
 -  Open File ```values -> strings.xml```
-<p align="center"><img src="https://cdn.discordapp.com/attachments/1002938193311715338/1076759629863858296/admob.png"></p>
-
-<p align="center"><img src="https://cdn.discordapp.com/attachments/1002938193311715338/1076832364648472606/save150.png"></p>
 
 
 ## 📋 License
