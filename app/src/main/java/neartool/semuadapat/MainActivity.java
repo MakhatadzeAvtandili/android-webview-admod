@@ -1,4 +1,4 @@
-package neartool.semuadapat;
+package webviewgold.myappname;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -19,6 +19,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.database.Cursor;
@@ -82,11 +83,13 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.net.NetworkInfo;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.browser.customtabs.CustomTabsIntent;
@@ -110,12 +113,14 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.Constants;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.onesignal.OSDeviceState;
 
@@ -125,6 +130,7 @@ import com.onesignal.OSSubscriptionStateChanges;
 import com.onesignal.OneSignal;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -134,6 +140,7 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -144,40 +151,42 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.browser.customtabs.CustomTabsIntent;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import static neartool.semuadapat.Config.ACTIVATE_PROGRESS_BAR;
-import static neartool.semuadapat.Config.ENABLE_SWIPE_NAVIGATE;
-import static neartool.semuadapat.Config.ENABLE__PULL_REFRESH;
-import static neartool.semuadapat.Config.EXIT_APP_DIALOG;
-import static neartool.semuadapat.Config.HIDE_NAVIGATION_BAR_IN_LANDSCAPE;
-import static neartool.semuadapat.Config.INCREMENT_WITH_REDIRECTS;
-import static neartool.semuadapat.Config.MAX_TEXT_ZOOM;
-import static neartool.semuadapat.Config.REMAIN_SPLASH_OPTION;
-import static neartool.semuadapat.Config.SPECIAL_LINK_HANDLING_OPTIONS;
-import static neartool.semuadapat.Config.SPLASH_SCREEN_ACTIVATED;
-import static neartool.semuadapat.Config.downloadableExtension;
-
-// ***********************************//
-// ** Code By Near Hoshinova
-// ** Github: github.com/GarudaID
-// ** Clean Code
-// ***********************************//
+import static webviewgold.myappname.Config.ACTIVATE_PROGRESS_BAR;
+import static webviewgold.myappname.Config.ENABLE_SWIPE_NAVIGATE;
+import static webviewgold.myappname.Config.ENABLE__PULL_REFRESH;
+import static webviewgold.myappname.Config.EXIT_APP_DIALOG;
+import static webviewgold.myappname.Config.HIDE_NAVIGATION_BAR_IN_LANDSCAPE;
+import static webviewgold.myappname.Config.INCREMENT_WITH_REDIRECTS;
+import static webviewgold.myappname.Config.MAX_TEXT_ZOOM;
+import static webviewgold.myappname.Config.REMAIN_SPLASH_OPTION;
+import static webviewgold.myappname.Config.SPECIAL_LINK_HANDLING_OPTIONS;
+import static webviewgold.myappname.Config.SPLASH_SCREEN_ACTIVATED;
+import static webviewgold.myappname.Config.downloadableExtension;
 
 public class MainActivity extends AppCompatActivity
         implements OSSubscriptionObserver,
         PurchasesUpdatedListener {
 
     public static boolean HIDE_ADS_FOR_PURCHASE = false;
-
-
     public static final int PERMISSION_REQUEST_CODE = 9541;
     public static final String ERROR_DETECTED = "No NFC tag detected!";
     public static final String WRITE_SUCCESS = "Text written to the NFC tag successfully!";
@@ -304,7 +313,7 @@ public class MainActivity extends AppCompatActivity
 //                == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
 //                == PackageManager.PERMISSION_GRANTED) {
 //            // Permission is granted
-//        }NFCenabled
+//        }
 //        else {
 //            //Permission is not granted so you have to request it
 //            ActivityCompat.requestPermissions(this,
@@ -313,7 +322,7 @@ public class MainActivity extends AppCompatActivity
 //        }
 
 
-        if () {
+        if (NFCenabled) {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.NFC) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.NFC},
                         PERMISSION_REQUEST_CODE);
@@ -415,7 +424,7 @@ public class MainActivity extends AppCompatActivity
         }
 
 
-
+        final String myOSurl = Config.PURCHASECODE;
 
         if (Config.PUSH_ENABLED) {
             OneSignal.addSubscriptionObserver(this);
