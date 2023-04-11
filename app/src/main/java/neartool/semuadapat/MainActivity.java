@@ -170,17 +170,17 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import static webviewgold.myappname.Config.ACTIVATE_PROGRESS_BAR;
-import static webviewgold.myappname.Config.ENABLE_SWIPE_NAVIGATE;
-import static webviewgold.myappname.Config.ENABLE__PULL_REFRESH;
-import static webviewgold.myappname.Config.EXIT_APP_DIALOG;
-import static webviewgold.myappname.Config.HIDE_NAVIGATION_BAR_IN_LANDSCAPE;
-import static webviewgold.myappname.Config.INCREMENT_WITH_REDIRECTS;
-import static webviewgold.myappname.Config.MAX_TEXT_ZOOM;
-import static webviewgold.myappname.Config.REMAIN_SPLASH_OPTION;
-import static webviewgold.myappname.Config.SPECIAL_LINK_HANDLING_OPTIONS;
-import static webviewgold.myappname.Config.SPLASH_SCREEN_ACTIVATED;
-import static webviewgold.myappname.Config.downloadableExtension;
+import static neartool.semuadapat.Config.ACTIVATE_PROGRESS_BAR;
+import static neartool.semuadapat.Config.ENABLE_SWIPE_NAVIGATE;
+import static neartool.semuadapat.Config.ENABLE__PULL_REFRESH;
+import static neartool.semuadapat.Config.EXIT_APP_DIALOG;
+import static neartool.semuadapat.Config.HIDE_NAVIGATION_BAR_IN_LANDSCAPE;
+import static neartool.semuadapat.Config.INCREMENT_WITH_REDIRECTS;
+import static neartool.semuadapat.Config.MAX_TEXT_ZOOM;
+import static neartool.semuadapat.Config.REMAIN_SPLASH_OPTION;
+import static neartool.semuadapat.Config.SPECIAL_LINK_HANDLING_OPTIONS;
+import static neartool.semuadapat.Config.SPLASH_SCREEN_ACTIVATED;
+import static neartool.semuadapat.Config.downloadableExtension;
 
 public class MainActivity extends AppCompatActivity
         implements OSSubscriptionObserver,
