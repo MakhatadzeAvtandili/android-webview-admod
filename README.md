@@ -43,18 +43,27 @@ repositories {
 
 ## How to setup
 -  Open File ```Java -> neartool -> semuadapat -> config```
+![webview1](https://user-images.githubusercontent.com/48685463/231377344-391262f1-9607-4bd1-9e2e-b855863127f7.PNG)
+
 
 ## How to setup Onesignal
 -  Open File ```Grandle scripts -> build.grandle(Module.app)```
+![onesi](https://user-images.githubusercontent.com/48685463/231377575-865e6a51-9c3b-4876-937a-725eb15ca5b6.PNG)
+
 
 ## How to setup my splashscreen
 -  Open File ```res -> layout -> splash_screen.xml```
+![sp](https://user-images.githubusercontent.com/48685463/231377718-dc362296-c99d-4f13-b11a-d6abb67b2476.PNG)
+
 
 ## How to setup my icon app
 -  Open File ```mipmap -> right click -> new -> image asset```
+![min](https://user-images.githubusercontent.com/48685463/231378083-410479a7-43ba-414f-b3e6-53f3ed82b5a9.png)
 
 ## How to setup my admob
 -  Open File ```values -> strings.xml```
+![ad](https://user-images.githubusercontent.com/48685463/231378206-3869ccf0-4476-47e3-bdc5-045dff5c480a.PNG)
+
 
 
 ## 📋 License
