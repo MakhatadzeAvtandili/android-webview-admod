@@ -44,11 +44,10 @@ public class WebViewApp extends Application {
                         @Override
                         public void notificationOpened(OSNotificationOpenedResult result) {
                             // Capture Launch URL (App URL) here
-                            // String url = null;
 
                             JSONObject data = result.getNotification().getAdditionalData();
                             String launchUrl = result.getNotification().getLaunchURL();
-                            ;
+                            String url = null;
                             if (data!=null && data.has("url"))
                             {
                                 try {
