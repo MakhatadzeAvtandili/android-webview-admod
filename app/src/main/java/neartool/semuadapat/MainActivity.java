@@ -1,4 +1,4 @@
-package webviewgold.myappname;
+package neartool.semuadapat;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
