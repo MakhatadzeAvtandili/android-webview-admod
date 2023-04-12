@@ -424,7 +424,7 @@ public class MainActivity extends AppCompatActivity
         }
 
 
-        final String myOSurl = Config.PURCHASECODE;
+        //final String myOSurl = Config.PURCHASECODE;
 
         if (Config.PUSH_ENABLED) {
             OneSignal.addSubscriptionObserver(this);
